@@ -147,7 +147,6 @@ $data = array(
 
 <div class="panel panel-default">
   <div class="panel-heading">Debug Panel</div>
-  <div class="panel-body"></div>
 
 	<ul class="list-group">
 	<li class="list-group-item"><?php _e( 'WordPress Version', 'dashdebug' ); ?>           : <span><?php echo get_bloginfo( 'version' ) . "\n"; ?></span></li>
@@ -201,11 +200,10 @@ $data = array(
 
 <div class="panel panel-default">
 	<div class="panel-heading"><?php _e( 'Active Theme', 'dashdebug' ); ?></div>
-	<div class="panel-body"></div>
-	<ul class="list-group">
-		<li class="list-group-item"><?php echo $theme->get( 'Name' ); ?> <?php echo $theme->get( 'Version' ) . "\n"; ?></li>
-		<li class="list-group-item"><?php echo '<a class="themeuri" href="' . $theme->get( 'ThemeURI' ) . '" >' . $theme->get( 'ThemeURI' ) . '</a>'; ?></li>
-	</ul>
+	<div class="panel-body">
+		<?php echo $theme->get( 'Name' ); ?> <?php echo $theme->get( 'Version' ); ?>
+		<?php echo '<a class="themeuri" href="' . $theme->get( 'ThemeURI' ) . '" >' . $theme->get( 'ThemeURI' ) . '</a>'; ?>
+	</div>
 </div>
 
 <div class="panel panel-default">
