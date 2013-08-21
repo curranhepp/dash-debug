@@ -10,46 +10,46 @@ $sqlversion = $wpdb->get_var( "SELECT VERSION() AS version" );
 // GET SQL Mode
 $mysqlinfo = $wpdb->get_results( "SHOW VARIABLES LIKE 'sql_mode'" );
 if ( is_array( $mysqlinfo ) ) $sql_mode = $mysqlinfo[0]->Value;
-if ( empty( $sql_mode ) ) $sql_mode = __( 'Not set', 'apblue' );
+if ( empty( $sql_mode ) ) $sql_mode = __( 'Not set', 'dashdebug' );
 // Get PHP Safe Mode
-if ( ini_get( 'safe_mode' ) ) $safe_mode = __( 'On', 'apblue' );
-else $safe_mode = __( 'Off', 'apblue' );
+if ( ini_get( 'safe_mode' ) ) $safe_mode = __( 'On', 'dashdebug' );
+else $safe_mode = __( 'Off', 'dashdebug' );
 // Get PHP allow_url_fopen
-if ( ini_get( 'allow_url_fopen' ) ) $allow_url_fopen = __( 'On', 'apblue' );
-else $allow_url_fopen = __( 'Off', 'apblue' );
+if ( ini_get( 'allow_url_fopen' ) ) $allow_url_fopen = __( 'On', 'dashdebug' );
+else $allow_url_fopen = __( 'Off', 'dashdebug' );
 // Get PHP Max Upload Size
 if ( ini_get( 'upload_max_filesize' ) ) $upload_max = ini_get( 'upload_max_filesize' );
-else $upload_max = __( 'N/A', 'apblue' );
+else $upload_max = __( 'N/A', 'dashdebug' );
 // Get PHP Output buffer Size
 if ( ini_get( 'pcre.backtrack_limit' ) ) $backtrack_limit = ini_get( 'pcre.backtrack_limit' );
-else $backtrack_limit = __( 'N/A', 'apblue' );
+else $backtrack_limit = __( 'N/A', 'dashdebug' );
 // Get PHP Max Post Size
 if ( ini_get( 'post_max_size' ) ) $post_max = ini_get( 'post_max_size' );
-else $post_max = __( 'N/A', 'apblue' );
+else $post_max = __( 'N/A', 'dashdebug' );
 // Get PHP Max execution time
 if ( ini_get( 'max_execution_time' ) ) $max_execute = ini_get( 'max_execution_time' );
-else $max_execute = __( 'N/A', 'apblue' );
+else $max_execute = __( 'N/A', 'dashdebug' );
 // Get PHP upload tmp directory
 if ( ini_get( 'upload_tmp_dir' ) ) $upload_tmp = ini_get( 'upload_tmp_dir' );
-else $upload_tmp = __( 'N/A', 'apblue' );
+else $upload_tmp = __( 'N/A', 'dashdebug' );
 // Get PHP Include Path
 if ( ini_get( 'include_path' ) ) $inc_path = ini_get( 'include_path' );
-else $inc_path = __( 'N/A', 'apblue' );
+else $inc_path = __( 'N/A', 'dashdebug' );
 // Get PHP Memory Limit
 if ( ini_get( 'memory_limit' ) ) {$memory_limit = isset( $apblue->memory_limit ) ? $apblue->memory_limit : ini_get( 'memory_limit' );}
-else $memory_limit = __( 'N/A', 'apblue' );
+else $memory_limit = __( 'N/A', 'dashdebug' );
 // Get actual memory_get_usage
 if ( function_exists( 'memory_get_usage' ) ) $memory_usage = round( memory_get_usage() / 1024 / 1024, 2 );
-else $memory_usage = __( 'N/A', 'apblue' );
+else $memory_usage = __( 'N/A', 'dashdebug' );
 // required for EXIF read
-if ( is_callable( 'exif_read_data' ) ) $exif = __( 'Yes', 'apblue' ). " ( V" . substr( phpversion( 'exif' ), 0, 4 ) . ")" ;
-else $exif = __( 'No', 'apblue' );
+if ( is_callable( 'exif_read_data' ) ) $exif = __( 'Yes', 'dashdebug' ). " ( V" . substr( phpversion( 'exif' ), 0, 4 ) . ")" ;
+else $exif = __( 'No', 'dashdebug' );
 // required for meta data
-if ( is_callable( 'iptcparse' ) ) $iptc = __( 'Yes', 'apblue' );
-else $iptc = __( 'No', 'apblue' );
+if ( is_callable( 'iptcparse' ) ) $iptc = __( 'Yes', 'dashdebug' );
+else $iptc = __( 'No', 'dashdebug' );
 // required for meta data
-if ( is_callable( 'xml_parser_create' ) ) $xml = __( 'Yes', 'apblue' );
-else $xml = __( 'No', 'apblue' );
+if ( is_callable( 'xml_parser_create' ) ) $xml = __( 'Yes', 'dashdebug' );
+else $xml = __( 'No', 'dashdebug' );
 $theme = wp_get_theme();
 $browser = $dashdebug->get_browser();
 $plugins = $dashdebug->get_all_plugins();
