@@ -63,12 +63,11 @@ $debug_users = count_users();
 
 <div class="dashdebug">
 
-	<?php screen_icon(); ?>
-	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+		<div class="icon32">
+			<img src="<?php echo DASHDEBUG_PLUGIN_URL ?>/img/dashdebug.png" />
+		</div><!-- /.icon32 -->
 
-	<!-- TODO: Provide markup for your options page here. -->
-
-
+		<h2 class="title"><?php _e( ' Dashboard Debug', 'dashdebug' ); ?></h2>
 
 <section class="color-1">
 	<p>
