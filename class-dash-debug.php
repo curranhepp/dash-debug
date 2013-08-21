@@ -85,6 +85,7 @@ class DashDebug {
         // add_action( 'admin_notices', array( $this, 'activate_issuem_admin_notice' ) );
         // add_action( 'admin_notices', array( $this, 'activate_issuem_admin_notice' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'category_chart_data' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'comment_chart_data' ) );
         add_action( 'admin_menu', array($this, 'add_tools_page' ) );
         // add_filter( 'plugin_action_links', array($this, 'add_action_links'), 10, 2 );
 
@@ -365,8 +366,8 @@ class DashDebug {
         And string will be used for Slice title
     */
 
-      $rows = array();
-  $table = array();
+          $rows = array();
+          $table = array();
 
 
     //Labels your chart, this represent the Column title and percentage.
@@ -418,12 +419,68 @@ class DashDebug {
           var options = {
                title: 'My Weekly Plan',
               is3D: 'false',
-              width: 800,
-              height: 600
+              width: 500,
+              height: 300
             };
           // Instantiate and draw our chart, passing in some options.
           //do not forget to check ur div ID
           var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+        }
+        </script>
+        <?php
+
+    }
+
+    function comment_chart_data() {
+        $table['cols'] = array(
+            array('label' => 'Comment Status', 'type' => 'string'),
+            array('label' => 'Percentage', 'type' => 'number')
+        );
+        $data = array(
+            'Approved'    => wp_count_comments()->approved,
+            'Moderated'    => wp_count_comments()->moderated,
+            'Spam'    => wp_count_comments()->spam,
+            'Trash'    => wp_count_comments()->trash
+        );
+
+        foreach ( $data as $label => $value ){
+
+            $temp = array();
+
+          // the following line will used to slice the Pie chart
+          $temp[] = array('v' => (string) $label);
+
+          //Values of the each slice
+          $temp[] = array('v' => (int) ( $value ));
+          $rows[] = array('c' => $temp);
+      }
+
+          $table['rows'] = $rows;
+          // convert data into JSON format
+        $jsonTable = json_encode($table); ?>
+
+        <script type="text/javascript">
+
+        // Load the Visualization API and the piechart package.
+        google.load('visualization', '1', {'packages':['corechart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+          // Create our data table out of JSON data loaded from server.
+          var data = new google.visualization.DataTable(<?=$jsonTable?>);
+          var options = {
+               title: 'Comments',
+              is3D: 'false',
+              width: 500,
+              height: 300
+            };
+          // Instantiate and draw our chart, passing in some options.
+          //do not forget to check ur div ID
+          var chart = new google.visualization.PieChart(document.getElementById('comment_chart_div'));
           chart.draw(data, options);
         }
         </script>
