@@ -240,6 +240,18 @@ $data = array(
 //     echo '<p> Post Count: '. $category->count . '</p>';  }
 ?>
 <div class="panel panel-default">
+	<div class="panel-heading"><?php _e( 'PHP Extensions Misc', 'dashdebug' ); ?></div>
+	<div class="panel-body">
+		<ul class="list-group">
+			<li class="list-group-item"><?php _e( 'cURL:', 'dashdebug'); ?>       	<?php echo function_exists( 'curl_init' ) ? 'Supported' : 'Not Supported'; ?></li>
+		    <li class="list-group-item"><?php _e( 'fsockopen:', 'dashdebug'); ?>  	<?php echo function_exists( 'fsockopen' ) ? 'Supported' : 'Not Supported'; ?></li>
+		    <li class="list-group-item"><?php _e( 'SOAP Client:', 'dashdebug'); ?>	<?php echo class_exists( 'SoapClient' ) ? 'Installed' : 'Not Installed'; ?></li>
+		    <li class="list-group-item"><?php _e( 'Suhosin:', 'dashdebug'); ?>    	<?php echo extension_loaded( 'suhosin' ) ? 'Installed' : 'Not Installed'; ?></li>
+		</ul>
+	</div>
+</div>
+
+<div class="panel panel-default">
   <div class="panel-heading">Panel heading without title</div>
   <div class="panel-body">
     Panel content
