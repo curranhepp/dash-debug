@@ -417,7 +417,7 @@ class DashDebug {
           // Create our data table out of JSON data loaded from server.
           var data = new google.visualization.DataTable(<?=$jsonTable?>);
           var options = {
-               title: 'My Weekly Plan',
+               title: 'Categories',
               is3D: 'false',
               width: 500,
               height: 300
