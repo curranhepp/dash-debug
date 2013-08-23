@@ -616,7 +616,7 @@ class DashDebug {
      */
     function get_all_options() {
 
-        // Not to be confused with the core deprecated get_alloptions
+        // Retrieve all autoload options or all options, if no autoloaded ones exist. This function caches its results.
         return wp_load_alloptions();
 
     } // end get_all_options
