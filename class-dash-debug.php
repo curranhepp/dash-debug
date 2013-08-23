@@ -82,8 +82,7 @@ class DashDebug {
 		add_action( 'TODO', array( $this, 'action_method_name' ) );
 		add_filter( 'TODO', array( $this, 'filter_method_name' ) );
 
-        // add_action( 'admin_notices', array( $this, 'activate_issuem_admin_notice' ) );
-        // add_action( 'admin_notices', array( $this, 'activate_issuem_admin_notice' ) );
+        // add_action( 'admin_notices', array( $this, 'activate_dashdebug_admin_notice' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'category_chart_data' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'comment_chart_data' ) );
         add_action( 'admin_menu', array($this, 'add_tools_page' ) );
@@ -316,14 +315,14 @@ class DashDebug {
 	}
 
     /**
-     * Helper function used print error nag if IssueM is not activated
+     * Display notice on activate
      *
      * @since 1.0.0
      */
-    function activate_issuem_admin_notice() { ?>
+    function activate_dashdebug_admin_notice() { ?>
 
         <div class="updated fade">
-            <p><?php _e( "Error! You must have the IssueM plugin activated to use IssueM's Magazine Theme.", 'issuem-magazine' ); ?></p>
+            <p><?php _e( "This is a notice.", 'dashdebug' ); ?></p>
         </div>
 
         <?php
