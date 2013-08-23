@@ -12,13 +12,13 @@
 class DashDebug {
 
 	/**
-	 * Plugin version, used for cache-busting of style and script file references.
-	 *
-	 * @since   1.0.0
-	 *
-	 * @var     string
-	 */
-	protected $version = '0.3.0';
+     * Plugin version, used for cache-busting of style and script file references.
+     *
+     * @since   1.0.0
+     *
+     * @var   string
+     */
+    protected $version = '0.3.0';
 
 	/**
 	 * Unique identifier for your plugin.
@@ -134,18 +134,18 @@ class DashDebug {
 	}
 
 	/**
-	 * Load the plugin text domain for translation.
-	 *
-	 * @since    1.0.0
-	 */
-	public function load_plugin_textdomain() {
+     * Load the plugin text domain for translation.
+     *
+     * @since    1.0.0
+     */
+    public function load_plugin_textdomain() {
 
-		$domain = $this->plugin_slug;
-		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+        $domain = $this->plugin_slug;
+        $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
-		load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
+        load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
         load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
-	}
+    }
 
 	/**
 	 * Register and enqueue admin-specific style sheet.
@@ -273,7 +273,7 @@ class DashDebug {
 		include_once( 'views/admin.php' );
 	}
 
-	/**
+    /**
      * Add settings action link to the plugins page.
      *
      * @since    1.0.0
@@ -315,7 +315,7 @@ class DashDebug {
 		// TODO: Define your filter hook callback here
 	}
 
-     /**
+    /**
      * Helper function used print error nag if IssueM is not activated
      *
      * @since 1.0.0
@@ -324,24 +324,6 @@ class DashDebug {
 
         <div class="updated fade">
             <p><?php _e( "Error! You must have the IssueM plugin activated to use IssueM's Magazine Theme.", 'issuem-magazine' ); ?></p>
-        </div>
-
-        <?php
-    }
-
-    /**
-     * Helper function used print error nag if IssueM is not activated
-     *
-     * @since 1.0.0
-     * @link http://www.google.com/culturalinstitute/asset-viewer/bent-iron-shutters/UQF5O-UmqdEZOg
-     */
-    function activate_gci_admin_notice() { ?>
-
-        <div class="gci-consumer-obt-ribbon" style="display: block;">
-            <span class="gci-consumer-obt-ribbon-icon"></span>
-            <span class="gci-consumer-obt-ribbon-welcome">Welcome to the Google Cultural Institute.</span> \
-            <span class="gci-consumer-obt-ribbon-learnmore"><a href="#start-tutorial" class="gci-consumer-obt-showtour">Take a tour</a> or <a href="#watch-video" class="gci-consumer-obt-showvideo">watch a video</a> to get started.</span>
-            <span class="gci-consumer-obt-ribbon-close"></span>
         </div>
 
         <?php
