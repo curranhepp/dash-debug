@@ -87,7 +87,10 @@ class DashDebug {
         add_action( 'admin_enqueue_scripts', array( $this, 'category_chart_data' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'comment_chart_data' ) );
         add_action( 'admin_menu', array($this, 'add_tools_page' ) );
-        // add_filter( 'plugin_action_links', array($this, 'add_action_links'), 10, 2 );
+        // Add an action link pointing to the options page. TODO: Rename "plugin-name.php" to the name your plugin
+        // $plugin_basename = plugin_basename( plugin_dir_path( __FILE__ ) . 'plugin-name.php' );
+        // add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
+
 
 	}
 
@@ -141,7 +144,7 @@ class DashDebug {
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
 		load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
-		load_plugin_textdomain( $domain, FALSE, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+        load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
 	}
 
 	/**
@@ -271,6 +274,22 @@ class DashDebug {
 	}
 
 	/**
+     * Add settings action link to the plugins page.
+     *
+     * @since    1.0.0
+     */
+    public function add_action_links( $links ) {
+
+        return array_merge(
+            array(
+                'settings' => '<a href="' . admin_url( 'plugins.php?page=plugin-name' ) . '">' . __( 'Settings', $this->plugin_slug ) . '</a>'
+            ),
+            $links
+        );
+
+    }
+
+	/**
 	 * NOTE:  Actions are points in the execution of a page or process
 	 *        lifecycle that WordPress fires.
 	 *
@@ -297,32 +316,6 @@ class DashDebug {
 	}
 
      /**
-     * Creates the action links for this plugin including the links and filename.
-     *
-     * @param   array   $links  Links to the edit and activate features of this plugin.
-     * @param   string  $file   The actual plugin file of this plugin.
-     * @return  array   $links  Includes links to Activate, Edit, and Delete
-     */
-    function add_action_links( $links, $file ) {
-
-        static $this_plugin;
-
-        if ( ! $this_plugin ) {
-            $this_plugin = plugin_basename(__FILE__);
-        } // end if
-
-        if( $file == $this_plugin ) {
-
-            $packs_link = '<a href="' . admin_url( 'tools.php?page=dashdebug' ) . '">' . __( 'View', 'dashdebug' ) . '</a>';
-            array_unshift( $links, $packs_link );
-
-        } // end if
-
-        return $links;
-
-    } // end add_action_links
-
-    /**
      * Helper function used print error nag if IssueM is not activated
      *
      * @since 1.0.0
