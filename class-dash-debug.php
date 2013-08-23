@@ -12,13 +12,13 @@
 class DashDebug {
 
 	/**
-     * Plugin version, used for cache-busting of style and script file references.
-     *
-     * @since   1.0.0
-     *
-     * @var   string
-     */
-    protected $version = '0.3.0';
+	 * Plugin version, used for cache-busting of style and script file references.
+	 *
+	 * @since   1.0.0
+	 *
+	 * @var   string
+	 */
+	protected $version = '0.3.0';
 
 	/**
 	 * Unique identifier for your plugin.
@@ -57,12 +57,12 @@ class DashDebug {
 	 */
 	private function __construct() {
 
-        // Global constants first
-        define( 'DASHDEBUG_VERSION_KEY', 'dashdebug_version' );
-        define( 'DASHDEBUG_VERSION_NUM', '0.2.0');
-        define( 'DASHDEBUG_PLUGIN_NAME', trim( dirname( plugin_basename( __FILE__ ) ), '/' ) );
-        define( 'DASHDEBUG_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . DASHDEBUG_PLUGIN_NAME );
-        define( 'DASHDEBUG_PLUGIN_URL', WP_PLUGIN_URL . '/' . DASHDEBUG_PLUGIN_NAME );
+		// Global constants first
+		define( 'DASHDEBUG_VERSION_KEY', 'dashdebug_version' );
+		define( 'DASHDEBUG_VERSION_NUM', '0.2.0' );
+		define( 'DASHDEBUG_PLUGIN_NAME', trim( dirname( plugin_basename( __FILE__ ) ), '/' ) );
+		define( 'DASHDEBUG_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . DASHDEBUG_PLUGIN_NAME );
+		define( 'DASHDEBUG_PLUGIN_URL', WP_PLUGIN_URL . '/' . DASHDEBUG_PLUGIN_NAME );
 
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
@@ -82,13 +82,13 @@ class DashDebug {
 		add_action( 'TODO', array( $this, 'action_method_name' ) );
 		add_filter( 'TODO', array( $this, 'filter_method_name' ) );
 
-        // add_action( 'admin_notices', array( $this, 'activate_dashdebug_admin_notice' ) );
-        add_action( 'admin_enqueue_scripts', array( $this, 'category_chart_data' ) );
-        add_action( 'admin_enqueue_scripts', array( $this, 'comment_chart_data' ) );
-        add_action( 'admin_menu', array($this, 'add_tools_page' ) );
-        // Add an action link pointing to the options page. TODO: Rename "plugin-name.php" to the name your plugin
-        // $plugin_basename = plugin_basename( plugin_dir_path( __FILE__ ) . 'plugin-name.php' );
-        // add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
+		// add_action( 'admin_notices', array( $this, 'activate_dashdebug_admin_notice' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'category_chart_data' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'comment_chart_data' ) );
+		add_action( 'admin_menu', array( $this, 'add_tools_page' ) );
+		// Add an action link pointing to the options page. TODO: Rename "plugin-name.php" to the name your plugin
+		// $plugin_basename = plugin_basename( plugin_dir_path( __FILE__ ) . 'plugin-name.php' );
+		// add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
 
 	}
@@ -115,7 +115,7 @@ class DashDebug {
 	 *
 	 * @since    1.0.0
 	 *
-	 * @param    boolean    $network_wide    True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog.
+	 * @param boolean $network_wide True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog.
 	 */
 	public static function activate( $network_wide ) {
 		// TODO: Define activation functionality here
@@ -126,25 +126,25 @@ class DashDebug {
 	 *
 	 * @since    1.0.0
 	 *
-	 * @param    boolean    $network_wide    True if WPMU superadmin uses "Network Deactivate" action, false if WPMU is disabled or plugin is deactivated on an individual blog.
+	 * @param boolean $network_wide True if WPMU superadmin uses "Network Deactivate" action, false if WPMU is disabled or plugin is deactivated on an individual blog.
 	 */
 	public static function deactivate( $network_wide ) {
 		// TODO: Define deactivation functionality here
 	}
 
 	/**
-     * Load the plugin text domain for translation.
-     *
-     * @since    1.0.0
-     */
-    public function load_plugin_textdomain() {
+	 * Load the plugin text domain for translation.
+	 *
+	 * @since    1.0.0
+	 */
+	public function load_plugin_textdomain() {
 
-        $domain = $this->plugin_slug;
-        $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+		$domain = $this->plugin_slug;
+		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
-        load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
-        load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
-    }
+		load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
+		load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
+	}
 
 	/**
 	 * Register and enqueue admin-specific style sheet.
@@ -166,12 +166,12 @@ class DashDebug {
 
 	}
 
-    /**
-     * Adds the stylesheet for the dashdebug admin page.
-     */
-    function add_admin_styles() {
-        wp_enqueue_style( 'dashdebug-css', DASHDEBUG_PLUGIN_URL . '/css/admin.css', DASHDEBUG_VERSION_NUM );
-    } // end add_admin_styles
+	/**
+	 * Adds the stylesheet for the dashdebug admin page.
+	 */
+	function add_admin_styles() {
+		wp_enqueue_style( 'dashdebug-css', DASHDEBUG_PLUGIN_URL . '/css/admin.css', DASHDEBUG_VERSION_NUM );
+	} // end add_admin_styles
 
 	/**
 	 * Register and enqueue admin-specific JavaScript.
@@ -183,13 +183,13 @@ class DashDebug {
 	public function enqueue_admin_scripts() {
 
 		// if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
-		// 	return;
+		//  return;
 		// }
 
 		$screen = get_current_screen();
 		// if ( $screen->id == $this->plugin_screen_hook_suffix ) {
-			wp_enqueue_script( $this->plugin_slug . '-admin-scripts', plugins_url( 'js/admin.js', __FILE__ ), array( 'jquery' ), $this->version );
-			// wp_enqueue_script( $this->plugin_slug . '-admin-script-boot', plugins_url( 'js/bootstrap3.0.0rc2.min.js', __FILE__ ), array( 'jquery' ), $this->version );
+		wp_enqueue_script( $this->plugin_slug . '-admin-scripts', plugins_url( 'js/admin.js', __FILE__ ), array( 'jquery' ), $this->version );
+		// wp_enqueue_script( $this->plugin_slug . '-admin-script-boot', plugins_url( 'js/bootstrap3.0.0rc2.min.js', __FILE__ ), array( 'jquery' ), $this->version );
 		// }
 
 	}
@@ -236,32 +236,32 @@ class DashDebug {
 
 	}
 
-    /**
-     * Adds the 'dashdebug' page to the 'Tools' menu.
-     */
-    function add_tools_page() {
+	/**
+	 * Adds the 'dashdebug' page to the 'Tools' menu.
+	 */
+	function add_tools_page() {
 
-        $admin_pages = array();
+		$admin_pages = array();
 
-        // Build the options for the submenu page API call
-        $parent_slug = 'tools.php';
-        $page_title = __( 'Dashboard Debug', 'dashdebug' );
-        $sub_menu_title = __( 'DashDebug', 'dashdebug' );
-        $capability = 'manage_options';
-        $menu_slug = 'dashdebug';
-        $function = array( $this, 'display_plugin_admin_page' );
+		// Build the options for the submenu page API call
+		$parent_slug = 'tools.php';
+		$page_title = __( 'Dashboard Debug', 'dashdebug' );
+		$sub_menu_title = __( 'DashDebug', 'dashdebug' );
+		$capability = 'manage_options';
+		$menu_slug = 'dashdebug';
+		$function = array( $this, 'display_plugin_admin_page' );
 
-        // Actually add the page as a subemnu
-        $admin_pages[] = add_submenu_page( $parent_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function );
+		// Actually add the page as a subemnu
+		$admin_pages[] = add_submenu_page( $parent_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function );
 
-        // Include the stylesheet for the given page
-        foreach( $admin_pages as $admin_page) {
-            add_action( "admin_print_styles-{$admin_page}", array( $this, 'add_admin_styles' ) );
-            add_action( "admin_enqueue_scripts-{$admin_page}", array( $this, 'enqueue_admin_scripts' ) );
-            // add_action( "admin_enqueue_scripts-{$admin_page}", array( $this, 'category_chart_data' ) );
-        } // end foreach
+		// Include the stylesheet for the given page
+		foreach ( $admin_pages as $admin_page ) {
+			add_action( "admin_print_styles-{$admin_page}", array( $this, 'add_admin_styles' ) );
+			add_action( "admin_enqueue_scripts-{$admin_page}", array( $this, 'enqueue_admin_scripts' ) );
+			// add_action( "admin_enqueue_scripts-{$admin_page}", array( $this, 'category_chart_data' ) );
+		} // end foreach
 
-    } // end add_tools_page
+	} // end add_tools_page
 
 	/**
 	 * Render the settings page for this plugin.
@@ -269,24 +269,24 @@ class DashDebug {
 	 * @since    1.0.0
 	 */
 	public function display_plugin_admin_page() {
-		include_once( 'views/admin.php' );
+		include_once 'views/admin.php';
 	}
 
-    /**
-     * Add settings action link to the plugins page.
-     *
-     * @since    1.0.0
-     */
-    public function add_action_links( $links ) {
+	/**
+	 * Add settings action link to the plugins page.
+	 *
+	 * @since    1.0.0
+	 */
+	public function add_action_links( $links ) {
 
-        return array_merge(
-            array(
-                'settings' => '<a href="' . admin_url( 'plugins.php?page=plugin-name' ) . '">' . __( 'Settings', $this->plugin_slug ) . '</a>'
-            ),
-            $links
-        );
+		return array_merge(
+			array(
+				'settings' => '<a href="' . admin_url( 'plugins.php?page=plugin-name' ) . '">' . __( 'Settings', $this->plugin_slug ) . '</a>'
+			),
+			$links
+		);
 
-    }
+	}
 
 	/**
 	 * NOTE:  Actions are points in the execution of a page or process
@@ -314,68 +314,68 @@ class DashDebug {
 		// TODO: Define your filter hook callback here
 	}
 
-    /**
-     * Display notice on activate
-     *
-     * @since 1.0.0
-     */
-    function activate_dashdebug_admin_notice() { ?>
+	/**
+	 * Display notice on activate
+	 *
+	 * @since 1.0.0
+	 */
+	function activate_dashdebug_admin_notice() { ?>
 
         <div class="updated fade">
             <p><?php _e( "This is a notice.", 'dashdebug' ); ?></p>
         </div>
 
         <?php
-    }
+	}
 
-    function category_chart_data() {
-        $args=array(
-          'orderby' => 'name',
-          'order' => 'ASC'
-          );
-    //Labels your chart, this represent the Column title and percentage.
-    /*
+	function category_chart_data() {
+		$args=array(
+			'orderby' => 'name',
+			'order' => 'ASC'
+		);
+		//Labels your chart, this represent the Column title and percentage.
+		/*
         note that one column is in "string" format and another one is in "number" format
         as pie chart only required "numbers" for calculating percentage
         And string will be used for Slice title
     */
 
-          $rows = array();
-          $table = array();
+		$rows = array();
+		$table = array();
 
 
-    //Labels your chart, this represent the Column title and percentage.
-    /*
+		//Labels your chart, this represent the Column title and percentage.
+		/*
         note that one column is in "string" format and another one is in "number" format
         as pie chart only required "numbers" for calculating percentage
         And string will be used for Slice title
     */
-    $table['cols'] = array(
-        array('label' => 'Category', 'type' => 'string'),
-        array('label' => 'Percentage', 'type' => 'number')
-    );
-        $categories=get_categories($args);
-          foreach($categories as $category) {
-            // $temp[] = array('c' => $category->name);
-            // $temp[] = array('v' => (string)(int)$category->count);
-            // echo $foobar;
-          // $temp[] = array('v' => (string) $category['name']);
-          // $temp[] = array('v' => (int) $category['count']);
-          // $rows[] = array('c' => (int) $category->count);
-          $temp = array();
+		$table['cols'] = array(
+			array( 'label' => 'Category', 'type' => 'string' ),
+			array( 'label' => 'Percentage', 'type' => 'number' )
+		);
+		$categories=get_categories( $args );
+		foreach ( $categories as $category ) {
+			// $temp[] = array('c' => $category->name);
+			// $temp[] = array('v' => (string)(int)$category->count);
+			// echo $foobar;
+			// $temp[] = array('v' => (string) $category['name']);
+			// $temp[] = array('v' => (int) $category['count']);
+			// $rows[] = array('c' => (int) $category->count);
+			$temp = array();
 
-          // the following line will used to slice the Pie chart
-          $temp[] = array('v' => (string) $category->name);
+			// the following line will used to slice the Pie chart
+			$temp[] = array( 'v' => (string) $category->name );
 
-          //Values of the each slice
-          $temp[] = array('v' => (int) $category->count);
-          $rows[] = array('c' => $temp);
-        }
-          $table['rows'] = $rows;
-          // convert data into JSON format
-        $jsonTable = json_encode($table);
+			//Values of the each slice
+			$temp[] = array( 'v' => (int) $category->count );
+			$rows[] = array( 'c' => $temp );
+		}
+		$table['rows'] = $rows;
+		// convert data into JSON format
+		$jsonTable = json_encode( $table );
 
-          // wp_enqueue_script('gooapi', 'https://www.google.com/jsapi',array( 'jquery' ));?>
+		// wp_enqueue_script('gooapi', 'https://www.google.com/jsapi',array( 'jquery' ));?>
           <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
        <script type="text/javascript">
@@ -389,7 +389,7 @@ class DashDebug {
         function drawChart() {
 
           // Create our data table out of JSON data loaded from server.
-          var data = new google.visualization.DataTable(<?=$jsonTable?>);
+          var data = new google.visualization.DataTable(<?php echo $jsonTable?>);
           var options = {
                title: 'Categories',
               is3D: 'false',
@@ -404,35 +404,35 @@ class DashDebug {
         </script>
         <?php
 
-    }
+	}
 
-    function comment_chart_data() {
-        $table['cols'] = array(
-            array('label' => 'Comment Status', 'type' => 'string'),
-            array('label' => 'Percentage', 'type' => 'number')
-        );
-        $data = array(
-            'Approved'    => wp_count_comments()->approved,
-            'Moderated'    => wp_count_comments()->moderated,
-            'Spam'    => wp_count_comments()->spam,
-            'Trash'    => wp_count_comments()->trash
-        );
+	function comment_chart_data() {
+		$table['cols'] = array(
+			array( 'label' => 'Comment Status', 'type' => 'string' ),
+			array( 'label' => 'Percentage', 'type' => 'number' )
+		);
+		$data = array(
+			'Approved'    => wp_count_comments()->approved,
+			'Moderated'    => wp_count_comments()->moderated,
+			'Spam'    => wp_count_comments()->spam,
+			'Trash'    => wp_count_comments()->trash
+		);
 
-        foreach ( $data as $label => $value ){
+		foreach ( $data as $label => $value ) {
 
-            $temp = array();
+			$temp = array();
 
-          // the following line will used to slice the Pie chart
-          $temp[] = array('v' => (string) $label);
+			// the following line will used to slice the Pie chart
+			$temp[] = array( 'v' => (string) $label );
 
-          //Values of the each slice
-          $temp[] = array('v' => (int) ( $value ));
-          $rows[] = array('c' => $temp);
-      }
+			//Values of the each slice
+			$temp[] = array( 'v' => (int) ( $value ) );
+			$rows[] = array( 'c' => $temp );
+		}
 
-          $table['rows'] = $rows;
-          // convert data into JSON format
-        $jsonTable = json_encode($table); ?>
+		$table['rows'] = $rows;
+		// convert data into JSON format
+		$jsonTable = json_encode( $table ); ?>
 
         <script type="text/javascript">
 
@@ -445,7 +445,7 @@ class DashDebug {
         function drawChart() {
 
           // Create our data table out of JSON data loaded from server.
-          var data = new google.visualization.DataTable(<?=$jsonTable?>);
+          var data = new google.visualization.DataTable(<?php echo $jsonTable?>);
           var options = {
                title: 'Comments',
               is3D: 'false',
@@ -460,196 +460,194 @@ class DashDebug {
         </script>
         <?php
 
-    }
+	}
 
+	/**
+	 * Determines which browser is currently being used to view this installation of WordPress.
+	 *
+	 * @return  array   Includes information on user_agent, name, version, platform, and pattern.
+	 */
+	function get_browser() {
 
+		// http://www.php.net/manual/en/function.get-browser.php#101125.
+		// Cleaned up a bit, but overall it's the same.
 
-    /**
-     * Determines which browser is currently being used to view this installation of WordPress.
-     *
-     * @return  array   Includes information on user_agent, name, version, platform, and pattern.
-     */
-    function get_browser() {
+		$user_agent = $_SERVER['HTTP_USER_AGENT'];
+		$browser_name = 'Unknown';
+		$platform = 'Unknown';
+		$version= "";
 
-        // http://www.php.net/manual/en/function.get-browser.php#101125.
-        // Cleaned up a bit, but overall it's the same.
+		// First get the platform
+		if ( preg_match( '/linux/i', $user_agent ) ) {
+			$platform = 'Linux';
+		} elseif ( preg_match( '/macintosh|mac os x/i', $user_agent ) ) {
+			$platform = 'Mac';
+		} elseif ( preg_match( '/windows|win32/i', $user_agent ) ) {
+			$platform = 'Windows';
+		} // end if/else
 
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-        $browser_name = 'Unknown';
-        $platform = 'Unknown';
-        $version= "";
+		// Next get the name of the user agent yes seperately and for good reason
+		if ( preg_match( '/MSIE/i', $user_agent ) &&  ! preg_match( '/Opera/i', $user_agent ) ) {
 
-        // First get the platform
-        if (preg_match('/linux/i', $user_agent)) {
-            $platform = 'Linux';
-        } elseif (preg_match('/macintosh|mac os x/i', $user_agent)) {
-            $platform = 'Mac';
-        } elseif (preg_match('/windows|win32/i', $user_agent)) {
-            $platform = 'Windows';
-        } // end if/else
+			$browser_name = 'Internet Explorer';
+			$browser_name_short = "MSIE";
 
-        // Next get the name of the user agent yes seperately and for good reason
-        if( preg_match( '/MSIE/i', $user_agent ) &&  ! preg_match( '/Opera/i', $user_agent ) ) {
+		} elseif ( preg_match( '/Firefox/i', $user_agent ) ) {
 
-            $browser_name = 'Internet Explorer';
-            $browser_name_short = "MSIE";
+			$browser_name = 'Mozilla Firefox';
+			$browser_name_short = "Firefox";
 
-        } elseif( preg_match( '/Firefox/i', $user_agent ) ) {
+		} elseif ( preg_match( '/Chrome/i', $user_agent ) ) {
 
-            $browser_name = 'Mozilla Firefox';
-            $browser_name_short = "Firefox";
+			$browser_name = 'Google Chrome';
+			$browser_name_short = "Chrome";
 
-        } elseif( preg_match( '/Chrome/i', $user_agent ) ) {
+		} elseif ( preg_match( '/Safari/i', $user_agent ) ) {
 
-            $browser_name = 'Google Chrome';
-            $browser_name_short = "Chrome";
+			$browser_name = 'Apple Safari';
+			$browser_name_short = "Safari";
 
-        } elseif( preg_match( '/Safari/i', $user_agent ) ) {
+		} elseif ( preg_match( '/Opera/i', $user_agent ) ) {
 
-            $browser_name = 'Apple Safari';
-            $browser_name_short = "Safari";
+			$browser_name = 'Opera';
+			$browser_name_short = "Opera";
 
-        } elseif( preg_match( '/Opera/i', $user_agent ) ) {
+		} elseif ( preg_match( '/Netscape/i', $user_agent ) ) {
 
-            $browser_name = 'Opera';
-            $browser_name_short = "Opera";
+			$browser_name = 'Netscape';
+			$browser_name_short = "Netscape";
 
-        } elseif( preg_match('/Netscape/i', $user_agent ) ) {
+		} // end if/else
 
-            $browser_name = 'Netscape';
-            $browser_name_short = "Netscape";
+		// Finally get the correct version number
+		$known = array( 'Version', $browser_name_short, 'other' );
+		$pattern = '#(?<browser>' . join( '|', $known ) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+		if ( ! preg_match_all( $pattern, $user_agent, $matches ) ) {
+			// We have no matching number just continue
+		} // end if
 
-        } // end if/else
+		// See how many we have
+		$i = count( $matches['browser'] );
+		if ( $i != 1 ) {
 
-        // Finally get the correct version number
-        $known = array( 'Version', $browser_name_short, 'other' );
-        $pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
-        if( ! preg_match_all( $pattern, $user_agent, $matches ) ) {
-            // We have no matching number just continue
-        } // end if
+			// We will have two since we are not using 'other' argument yet
+			// See if version is before or after the name
+			if ( strripos( $user_agent, "Version" ) < strripos( $user_agent, $browser_name_short ) ) {
+				$version = $matches['version'][0];
+			} else {
+				$version = $matches['version'][1];
+			} // end if/else
 
-        // See how many we have
-        $i = count( $matches['browser'] );
-        if( $i != 1 ) {
+		} else {
+			$version= $matches['version'][0];
+		} // end if/else
 
-            // We will have two since we are not using 'other' argument yet
-            // See if version is before or after the name
-            if (strripos($user_agent, "Version") < strripos($user_agent, $browser_name_short)){
-                $version = $matches['version'][0];
-            } else {
-                $version = $matches['version'][1];
-            } // end if/else
+		// Check if we have a number
+		if ( $version == null || $version == "" ) {
+			$version = "?";
+		} // end if/else
 
-        } else {
-            $version= $matches['version'][0];
-        } // end if/else
+		return array(
+			'user_agent'    => $user_agent,
+			'name'          => $browser_name,
+			'version'       => $version,
+			'platform'      => $platform,
+			'pattern'       => $pattern
+		);
 
-        // Check if we have a number
-        if ($version == null || $version == "") {
-            $version = "?";
-        } // end if/else
+	} // end get_browser
 
-        return array(
-            'user_agent'    => $user_agent,
-            'name'          => $browser_name,
-            'version'       => $version,
-            'platform'      => $platform,
-            'pattern'       => $pattern
-        );
+	/**
+	 * From the Codex:
+	 *
+	 *  "Check the plugins directory and retrieve all plugin files with plugin data."
+	 *
+	 * @return  array   The array of plugins currently installed in the environment.
+	 */
+	function get_all_plugins() {
+		return get_plugins();
+	} // end get_all_plugins
 
-    } // end get_browser
+	/**
+	 * Retrieves all a list of the active plugins.
+	 *
+	 * @return  array   The list of active plugins.
+	 */
+	function get_active_plugins() {
+		return get_option( 'active_plugins', array() );
+	} // end get_active_plugins
 
-    /**
-     * From the Codex:
-     *
-     *  "Check the plugins directory and retrieve all plugin files with plugin data."
-     *
-     * @return  array   The array of plugins currently installed in the environment.
-     */
-    function get_all_plugins() {
-        return get_plugins();
-    } // end get_all_plugins
+	/**
+	 * Retrieves the amount of memory being used by the installation along with the themes, plugins, etc.
+	 *
+	 * @return  float   The amount of memory being used by this installation.
+	 */
+	function get_memory_usage() {
+		return round( memory_get_usage() / 1024 / 1024, 2 );
+	} // end get_memory_usage
 
-    /**
-     * Retrieves all a list of the active plugins.
-     *
-     * @return  array   The list of active plugins.
-     */
-    function get_active_plugins() {
-        return get_option( 'active_plugins', array() );
-    } // end get_active_plugins
+	/**
+	 * From the Codex:
+	 *
+	 *  "Retrieve all autoload options or all options, if no autoloaded ones exist."
+	 *
+	 * @return  array   $options    All of the options that exist in the WordPress installation
+	 */
+	function get_all_options() {
 
-    /**
-     * Retrieves the amount of memory being used by the installation along with the themes, plugins, etc.
-     *
-     * @return  float   The amount of memory being used by this installation.
-     */
-    function get_memory_usage() {
-        return round( memory_get_usage() / 1024 / 1024, 2 );
-    } // end get_memory_usage
+		// Retrieve all autoload options or all options, if no autoloaded ones exist. This function caches its results.
+		return wp_load_alloptions();
 
-    /**
-     * From the Codex:
-     *
-     *  "Retrieve all autoload options or all options, if no autoloaded ones exist."
-     *
-     * @return  array   $options    All of the options that exist in the WordPress installation
-     */
-    function get_all_options() {
+	} // end get_all_options
 
-        // Retrieve all autoload options or all options, if no autoloaded ones exist. This function caches its results.
-        return wp_load_alloptions();
+	/**
+	 * Gathers a list of all of the transients set in the plugin.
+	 *
+	 * @param array   $options The array of options managed by the installation of WordPress
+	 * @return  array   $transients     The array of transients currently stored by WordPress
+	 */
+	function get_transients_in_options( $options ) {
 
-    } // end get_all_options
+		$transients = array();
 
-    /**
-     * Gathers a list of all of the transients set in the plugin.
-     *
-     * @param   array   $options        The array of options managed by the installation of WordPress
-     * @return  array   $transients     The array of transients currently stored by WordPress
-     */
-    function get_transients_in_options( $options ) {
+		foreach ( $options as $name => $value ) {
 
-        $transients = array();
+			if ( stristr( $name, 'transient' ) ) {
+				$transients[ $name ] = $value;
+			} // end if
 
-        foreach( $options as $name => $value ) {
+		} // end foreach
 
-            if( stristr( $name, 'transient' ) ) {
-                $transients[ $name ] = $value;
-            } // end if
+		return $transients;
 
-        } // end foreach
+	} // end get_transients_in_options
 
-        return $transients;
+	/**
+	 * Get the current IP address.
+	 *
+	 * @param boolean $safe
+	 * @return string IP address
+	 * 2011-11-02 ms
+	 */
+	function getClientIp( $safe = true ) {
+		if ( !$safe && env( 'HTTP_X_FORWARDED_FOR' ) ) {
+			$ipaddr = preg_replace( '/(?:,.*)/', '', env( 'HTTP_X_FORWARDED_FOR' ) );
+		} else {
+			if ( env( 'HTTP_CLIENT_IP' ) ) {
+				$ipaddr = env( 'HTTP_CLIENT_IP' );
+			} else {
+				$ipaddr = env( 'REMOTE_ADDR' );
+			}
+		}
 
-    } // end get_transients_in_options
+		if ( env( 'HTTP_CLIENTADDRESS' ) ) {
+			$tmpipaddr = env( 'HTTP_CLIENTADDRESS' );
 
-    /**
-     * Get the current IP address.
-     *
-     * @param boolean $safe
-     * @return string IP address
-     * 2011-11-02 ms
-     */
-    function getClientIp($safe = true) {
-        if (!$safe && env('HTTP_X_FORWARDED_FOR')) {
-            $ipaddr = preg_replace('/(?:,.*)/', '', env('HTTP_X_FORWARDED_FOR'));
-        } else {
-            if (env('HTTP_CLIENT_IP')) {
-                $ipaddr = env('HTTP_CLIENT_IP');
-            } else {
-                $ipaddr = env('REMOTE_ADDR');
-            }
-        }
-
-        if (env('HTTP_CLIENTADDRESS')) {
-            $tmpipaddr = env('HTTP_CLIENTADDRESS');
-
-            if (!empty($tmpipaddr)) {
-                $ipaddr = preg_replace('/(?:,.*)/', '', $tmpipaddr);
-            }
-        }
-        return trim($ipaddr);
-    }
+			if ( !empty( $tmpipaddr ) ) {
+				$ipaddr = preg_replace( '/(?:,.*)/', '', $tmpipaddr );
+			}
+		}
+		return trim( $ipaddr );
+	}
 
 }
