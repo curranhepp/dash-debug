@@ -117,9 +117,9 @@ $data = array(
 				<div class="handlediv" title="Click to toggle"><br></div>
 				<h3 class="hndle"><span>Debug Configuration Settings</span></h3>
 				<div class="inside">
-					<ul>
-						<li>WP_DEBUG :          <?php echo defined( 'WP_DEBUG' ) ? WP_DEBUG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
-						<li>WP_DEBUG_LOG :      <?php echo defined( 'WP_DEBUG_LOG' ) ? WP_DEBUG_LOG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
+					<ul class="tooltip-items">
+						<li><a href="#" data-toggle="tooltip" title="This should be enabled if you plan on doing any debugging">WP_DEBUG :</a>          <?php echo defined( 'WP_DEBUG' ) ? WP_DEBUG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
+						<li><a href="#" data-toggle="tooltip" title="Log data to a file">WP_DEBUG_LOG :</a>      <?php echo defined( 'WP_DEBUG_LOG' ) ? WP_DEBUG_LOG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
 						<li>WP_DEBUG_DISPLAY :  <?php echo defined( 'WP_DEBUG_DISPLAY' ) ? WP_DEBUG_DISPLAY ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
 						<li>SCRIPT_DEBUG:       <?php echo defined( 'SCRIPT_DEBUG' ) ? SCRIPT_DEBUG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
 						<li>SAVEQUERIES :       <?php echo defined( 'SAVEQUERIES' ) ? SAVEQUERIES ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
