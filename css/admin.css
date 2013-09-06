@@ -731,3 +731,17 @@ a.list-group-item:focus {
   border-width: 0 5px 5px;
   border-bottom-color: #000000;
 }
+.helpImg {
+margin-left: 6px;
+margin-right: 10px;
+position: relative;
+top: -1px;
+vertical-align: middle;
+}
+.pull-right {
+  float: right !important;
+}
+
+.pull-left {
+  float: left !important;
+}

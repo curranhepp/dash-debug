@@ -2,6 +2,7 @@
 
 // Get a reference to the SysInfo instance
 $dashdebug = DashDebug::get_instance();
+$icnhelp = '<img src="' . DASHDEBUG_PLUGIN_URL . '/img/icn-help.png" class="helpImg" />';
 
 // Now get information from the environment
 global $wpdb, $apblue;
@@ -118,13 +119,13 @@ $data = array(
 				<h3 class="hndle"><span>Debug Configuration Settings</span></h3>
 				<div class="inside">
 					<ul class="tooltip-items">
-						<li><a href="#" data-toggle="tooltip" title="This should be enabled if you plan on doing any debugging">WP_DEBUG :</a>          <?php echo defined( 'WP_DEBUG' ) ? WP_DEBUG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
-						<li><a href="#" data-toggle="tooltip" title="Log data to a file">WP_DEBUG_LOG :</a>      <?php echo defined( 'WP_DEBUG_LOG' ) ? WP_DEBUG_LOG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
-						<li>WP_DEBUG_DISPLAY :  <?php echo defined( 'WP_DEBUG_DISPLAY' ) ? WP_DEBUG_DISPLAY ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
-						<li>SCRIPT_DEBUG:       <?php echo defined( 'SCRIPT_DEBUG' ) ? SCRIPT_DEBUG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
-						<li>SAVEQUERIES :       <?php echo defined( 'SAVEQUERIES' ) ? SAVEQUERIES ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
-						<li>AUTOSAVE_INTERVAL : <?php echo defined( 'AUTOSAVE_INTERVAL' ) ? AUTOSAVE_INTERVAL ? AUTOSAVE_INTERVAL . "\n" : _e( 'Disabled', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
-						<li>WP_POST_REVISIONS : <?php echo defined( 'WP_POST_REVISIONS' ) ? WP_POST_REVISIONS ? WP_POST_REVISIONS . "\n" : _e( 'Disabled', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
+						<li>WP_DEBUG		  <a href="#" data-toggle="tooltip" title="This should be enabled if you plan on doing any debugging"><?php echo $icnhelp; ?></a><div class="pull-right"><?php echo defined( 'WP_DEBUG' ) ? WP_DEBUG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) : _e( 'Not set', 'dashdebug' ) ?></div></li>
+						<li>WP_DEBUG_LOG	  <a href="#" data-toggle="tooltip" title="Log data to a file"><?php echo $icnhelp; ?></a> <div class="pull-right"><?php echo defined( 'WP_DEBUG_LOG' ) ? WP_DEBUG_LOG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) : _e( 'Not set', 'dashdebug' ) ?></div></li>
+						<li>WP_DEBUG_DISPLAY  <a href="#" data-toggle="tooltip" title="Output debug information to the display."><?php echo $icnhelp; ?></a><div class="pull-right"><?php echo defined( 'WP_DEBUG_DISPLAY' ) ? WP_DEBUG_DISPLAY ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) : _e( 'Not set', 'dashdebug' ) ?></div></li>
+						<li>SCRIPT_DEBUG      <a href="#" data-toggle="tooltip" title="Display debugging for CSS and Javascript."><?php echo $icnhelp; ?></a><div class="pull-right"><?php echo defined( 'SCRIPT_DEBUG' ) ? SCRIPT_DEBUG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) : _e( 'Not set', 'dashdebug' ) ?></div></li>
+						<li>SAVEQUERIES       <a href="#" data-toggle="tooltip" title="Save server queries to view later."><?php echo $icnhelp; ?></a><div class="pull-right"><?php echo defined( 'SAVEQUERIES' ) ? SAVEQUERIES ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) : _e( 'Not set', 'dashdebug' ) ?></div></li>
+						<li>AUTOSAVE_INTERVAL <a href="#" data-toggle="tooltip" title="Time in seconds that Wordpress will automatically save a post you are editing."><?php echo $icnhelp; ?></a><div class="pull-right"><?php echo defined( 'AUTOSAVE_INTERVAL' ) ? AUTOSAVE_INTERVAL ? AUTOSAVE_INTERVAL : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) : _e( 'Not set', 'dashdebug' ) ?></div></li>
+						<li>WP_POST_REVISIONS <a href="#" data-toggle="tooltip" title="The number of revisions saved for each post"><?php echo $icnhelp; ?></a><div class="pull-right"><?php echo defined( 'WP_POST_REVISIONS' ) ? WP_POST_REVISIONS ? WP_POST_REVISIONS : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) : _e( 'Not set', 'dashdebug' ) ?></div></li>
 					</ul>
 				</div>
 			</div>
