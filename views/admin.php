@@ -187,7 +187,7 @@ $data = array(
 	<li class="list-group-item"><?php _e( 'Plugins URL', 'dashdebug' ); ?>            : <span><?php echo WP_PLUGIN_URL; ?></span></li>
 	<li class="list-group-item"><?php _e( 'Uploads Directory', 'dashdebug' ); ?>      : <span><?php echo ( defined( 'UPLOADS' ) ? UPLOADS : WP_CONTENT_DIR . '/uploads' ); ?></span></li>
 
-	<li class="list-group-item"><?php _e( 'Cookie Domain', 'dashdebug' ); ?>          : <span><?php echo defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN ? COOKIE_DOMAIN . "\n" : _e( 'Disabled', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></span></li>
+	<li class="list-group-item"><?php _e( 'Cookie Domain', 'dashdebug' ); ?>          : <span><?php echo defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN ? COOKIE_DOMAIN . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></span></li>
 	<li class="list-group-item"><?php _e( 'Multi-Site Active:', 'dashdebug' ); ?>     : <span><?php echo is_multisite() ? _e( 'Yes', 'dashdebug' ) . "\n" : _e( 'No', 'dashdebug' ) . "\n" ?></span></li>
 
 	<li class="list-group-item"><?php _e( 'WP Options Count', 'dashdebug' ); ?>       : <span><?php echo count( $all_options ) . "\n"; ?></span></li>
