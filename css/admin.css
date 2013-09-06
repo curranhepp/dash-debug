@@ -222,17 +222,24 @@ background-color: #fcf2f2;
 border-color: #dFb5b4;
 }
 
-#dashdebug .db-enabled {
-color: #33870b;
--webkit-border-radius: 4px 4px 0 0;
--moz-border-radius: 4px 4px 0 0;
-border-radius: 4px 4px 0 0;
+.label {
+display: inline;
+padding: .2em .6em .3em;
+font-size: 75%;
+font-weight: bold;
+line-height: 1;
+color: #fff;
+text-align: center;
+white-space: nowrap;
+vertical-align: baseline;
+border-radius: .25em;
 }
-
-#dashdebug .db-disabled {
-  color: #d51328;
-  /*background-color: rgb(160, 102, 102);*/
-}
+.label-primary { background-color: #428bca; }
+.label-info { background-color: #5bc0de; }
+.label-default { background-color: #999; }
+.label-success { background-color: #5cb85c; }
+.label-warning { background-color: #f0ad4e; }
+.label-danger { background-color: #d9534f; }
 
 /* General button style (reset) */
 .btn {
