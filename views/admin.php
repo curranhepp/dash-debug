@@ -118,11 +118,11 @@ $data = array(
 				<h3 class="hndle"><span>Debug Configuration Settings</span></h3>
 				<div class="inside">
 					<ul>
-						<li>WP_DEBUG :          <?php echo defined( 'WP_DEBUG' ) ? WP_DEBUG ? _e( '<span class="db-enabled">Enabled</span>', 'dashdebug' ) . "\n" : _e( 'Disabled', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
-						<li>WP_DEBUG_LOG :      <?php echo defined( 'WP_DEBUG' ) ? WP_DEBUG ? _e( '<span class="db-enabled">Enabled</span>', 'dashdebug' ) . "\n" : _e( 'Disabled', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
-						<li>WP_DEBUG_DISPLAY :  <?php echo defined( 'WP_DEBUG_DISPLAY' ) ? WP_DEBUG ? _e( '<span class="db-enabled">Enabled</span>', 'dashdebug' ) . "\n" : _e( 'Disabled', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
-						<li>SCRIPT_DEBUG:       <?php echo defined( 'SCRIPT_DEBUG' ) ? SCRIPT_DEBUG ? _e( 'Enabled', 'dashdebug' ) . "\n" : _e( '<span class="db-disabled">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
-						<li>SAVEQUERIES :       <?php echo defined( 'SAVEQUERIES' ) ? SAVEQUERIES ? _e( 'Enabled', 'dashdebug' ) . "\n" : _e( 'Disabled', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
+						<li>WP_DEBUG :          <?php echo defined( 'WP_DEBUG' ) ? WP_DEBUG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
+						<li>WP_DEBUG_LOG :      <?php echo defined( 'WP_DEBUG_LOG' ) ? WP_DEBUG_LOG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
+						<li>WP_DEBUG_DISPLAY :  <?php echo defined( 'WP_DEBUG_DISPLAY' ) ? WP_DEBUG_DISPLAY ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
+						<li>SCRIPT_DEBUG:       <?php echo defined( 'SCRIPT_DEBUG' ) ? SCRIPT_DEBUG ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
+						<li>SAVEQUERIES :       <?php echo defined( 'SAVEQUERIES' ) ? SAVEQUERIES ? _e( '<span class="label label-success">Enabled</span>', 'dashdebug' ) . "\n" : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
 						<li>AUTOSAVE_INTERVAL : <?php echo defined( 'AUTOSAVE_INTERVAL' ) ? AUTOSAVE_INTERVAL ? AUTOSAVE_INTERVAL . "\n" : _e( 'Disabled', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
 						<li>WP_POST_REVISIONS : <?php echo defined( 'WP_POST_REVISIONS' ) ? WP_POST_REVISIONS ? WP_POST_REVISIONS . "\n" : _e( 'Disabled', 'dashdebug' ) . "\n" : _e( 'Not set', 'dashdebug' ) . "\n" ?></li>
 					</ul>
