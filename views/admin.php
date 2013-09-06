@@ -194,10 +194,9 @@ $data = array(
 	<li class="list-group-item"><?php _e( 'WP Options Size:', 'dashdebug' ); ?>       : <span><?php echo $all_options_bytes . "kb\n" ?></span></li>
 	<li class="list-group-item"><?php _e( 'WP Options Transients', 'dashdebug' ); ?>  : <span><?php echo count( $all_options_transients ) . "\n"; ?></span></li>
 
-	<li class="list-group-item"><?php _e( 'Operating System:', 'dashdebug' ); ?>    <?php echo $browser['platform']; ?></li>
+	<li class="list-group-item"><?php _e( 'Operating System:', 'dashdebug' ); ?>    <?php echo $browser['platform'] . '<img src="' . DASHDEBUG_PLUGIN_URL . '/img/platform-' . $browser['platform'] . '.png" />'; ?></li>
 	<li class="list-group-item"><?php _e( 'Browser:', 'dashdebug' ); ?>             <?php echo $browser['name'] . ' ' . $browser['version']; ?></li>
 	<li class="list-group-item"><?php _e( 'User Agent:', 'dashdebug' ); ?>          <?php echo $browser['user_agent']; ?></li>
-
 	</ul>
 </div><!-- /.panel-default -->
 
