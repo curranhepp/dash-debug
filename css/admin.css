@@ -177,16 +177,6 @@ margin: 0 8px;
   border-top:solid 1px #ccc;
 }
 
-.dashdebug span {
-  color: rgba(109, 105, 105, 0.89);
-  display: inline-block;
-font-size: 0.75em;
-font-family: Monaco,Consolas,"Lucida Console",monospace;
-background-color: #eee;
-padding: 0 0.6em;
-margin: 0 0.2em;
-}
-
 .dashdebug .plugversion {
   color: rgb(160, 102, 102);
 }
@@ -223,8 +213,10 @@ border-color: #dFb5b4;
 }
 
 .label {
+  font-family: Monaco,Consolas,"Lucida Console",monospace;
 display: inline;
-padding: .2em .6em .3em;
+/*padding: .2em .6em .3em;*/
+padding: 0 0.6em;
 font-size: 75%;
 font-weight: bold;
 line-height: 1;
@@ -731,6 +723,7 @@ a.list-group-item:focus {
   border-width: 0 5px 5px;
   border-bottom-color: #000000;
 }
+
 .helpImg {
 margin-left: 6px;
 margin-right: 10px;
