@@ -80,15 +80,15 @@ $debug_users = count_users();
 
 <?php
 $data = array(
-	'posts'       => wp_count_posts( 'post' )->publish,
-	'pages'       => wp_count_posts( 'page' )->publish,
-	'categories'  => wp_count_terms( 'category' ),
-	'tags'        => wp_count_terms( 'post_tag' ),
-	'comments'    => wp_count_comments()->approved,
-	'comments_mod'    => wp_count_comments()->moderated,
-	'comments_spam'    => wp_count_comments()->spam,
-	'comments_trash'    => wp_count_comments()->trash,
-	'attachments' => wp_count_posts( 'attachment' )->inherit
+	'posts'          => wp_count_posts( 'post' )->publish,
+	'pages'          => wp_count_posts( 'page' )->publish,
+	'categories'     => wp_count_terms( 'category' ),
+	'tags'           => wp_count_terms( 'post_tag' ),
+	'comments'       => wp_count_comments()->approved,
+	'comments_mod'   => wp_count_comments()->moderated,
+	'comments_spam'  => wp_count_comments()->spam,
+	'comments_trash' => wp_count_comments()->trash,
+	'attachments'    => wp_count_posts( 'attachment' )->inherit
 );
 ?>
 <div id="dashboard-widgets" class="metabox-holder columns-2">
@@ -299,9 +299,29 @@ $data = array(
 </div>
 
 <div class="panel panel-default">
+  <div class="panel-heading">All options</div>
+  <div class="panel-body">
+    <?php $all_options = wp_load_alloptions(); ?>
+    <?php echo 'Total Options Set: ' . count($all_options); ?>
+    <?php $my_options = array();
+    	foreach( $all_options as $name => $value ) {
+    		if(stristr( $name, '_transient' ))  $my_options[$name] = $value;
+    	}
+    	print_r($my_options);
+    ?>
+    <?php //print_r( wp_load_alloptions() ); ?>
+  </div>
+</div>
+
+<div class="panel panel-default">
   <div class="panel-heading">Panel heading without title</div>
   <div class="panel-body">
-    Panel content
+    Session:                  <?php echo isset( $_SESSION ) ? 'Enabled' : 'Disabled'; ?><?php echo "\n"; ?>
+    Session Name:             <?php echo esc_html( ini_get( 'session.name' ) ); ?><?php echo "\n"; ?>
+    Cookie Path:              <?php echo esc_html( ini_get( 'session.cookie_path' ) ); ?><?php echo "\n"; ?>
+    Save Path:                <?php echo esc_html( ini_get( 'session.save_path' ) ); ?><?php echo "\n"; ?>
+    Use Cookies:              <?php echo ini_get( 'session.use_cookies' ) ? 'On' : 'Off'; ?><?php echo "\n"; ?>
+    Use Only Cookies:         <?php echo ini_get( 'session.use_only_cookies' ) ? 'On' : 'Off'; ?><?php echo "\n"; ?>
   </div>
 </div>
 
