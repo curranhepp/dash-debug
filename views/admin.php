@@ -243,6 +243,38 @@ $data = array(
 		?>
 	</ul>
 </div><!-- /.panel-default -->
+<div class="panel panel-default">
+	<div class="panel-heading"><?php _e( 'Inactive Plugins', 'dashdebug' ); ?></div>
+	<div class="panel-body">Inactive Plugins: <?php echo count($active_plugins); ?></div>
+	<ul class="list-group">
+		<?php
+		$return = '';
+		foreach( $plugins as $plugin_path => $plugin ) {
+                    if( in_array( $plugin_path, $active_plugins ) )
+                        continue;
+
+                    $return .= $plugin['Name'] . ': ' . $plugin['Version'] . "\n";
+                }
+                echo $return;
+		// foreach ( $plugins as $plugin_path => $plugin ) {
+
+		// 	// Only show active plugins
+		// 	if ( in_array( $plugin_path, $active_plugins ) ) {
+		// 		continue;
+
+		// 		echo '<li class="list-group-item"> ' . $plugin['Name'] . ' ' . '<span class="plugversion">' . $plugin['Version'] . '</span>';
+
+		// 		if ( isset( $plugin['PluginURI'] ) ) {
+		// 			echo ' <a class="pluguri" href="' . $plugin['PluginURI'] . '" >' . $plugin['PluginURI'] . '</a>';
+		// 		} // end if
+
+		// 		echo "</li>";
+
+		// 	} // end if
+		// } // end foreach
+		?>
+	</ul>
+</div><!-- /.panel-default -->
 <?php
 // $args=array(
 //   'orderby' => 'name',
