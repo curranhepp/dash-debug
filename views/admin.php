@@ -205,8 +205,17 @@ $data = array(
 <div class="panel panel-default">
 	<div class="panel-heading"><?php _e( 'Active Theme', 'dashdebug' ); ?></div>
 	<div class="panel-body">
-		<?php echo $theme->get( 'Name' ); ?> <?php echo $theme->get( 'Version' ); ?>
-		<?php echo '<a class="themeuri" href="' . $theme->get( 'ThemeURI' ) . '" >' . $theme->get( 'ThemeURI' ) . '</a>'; ?>
+		<ul class="list-group">
+			<li class="list-group-item"><?php //echo $theme->get( 'Name' ); ?> <?php echo get_option( 'template' ); ?> <?php echo $theme->get( 'Version' ); ?></li>
+			<li class="list-group-item"><?php echo '<a class="themeuri" href="' . $theme->get( 'ThemeURI' ) . '" >' . $theme->get( 'ThemeURI' ) . '</a>'; ?></li>
+			<?php
+			$debug_templates = get_page_templates();
+			foreach ($debug_templates as $name => $file) {
+				echo '<li class="list-group-item"> ' . $name . ' ' . '<span class="plugversion">' . $file . '</span>';
+
+			}
+			 ?>
+		</ul>
 	</div>
 </div>
 
