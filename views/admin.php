@@ -181,8 +181,9 @@ $data = array(
 	<li class="list-group-item"><?php _e( 'PHP XML support', 'dashdebug' ); ?>             : <span><?php echo $xml; ?></span></li>
 	<li class="list-group-item"><?php _e( 'WordPress URL', 'dashdebug' ); ?>               : <span><?php echo get_bloginfo( 'wpurl' ) . "\n"; ?></span></li>
 	<li class="list-group-item"><?php _e( 'Home URL: ', 'dashdebug' ); ?>                  : <span><?php echo get_bloginfo( 'url' ) . "\n"; ?></span></li>
-	<li class="list-group-item"><?php _e( 'Users ', 'dashdebug' ); ?>						: <span><?php echo 'There are ', $debug_users['total_users'], ' total users'; ?></span></li>
 	<li class="list-group-item"><?php _e( 'Total Users ', 'dashdebug' ); ?>					: <span><?php echo $debug_users['total_users']; ?></span></li>
+	<li class="list-group-item"><?php _e( 'Log Size ', 'dashdebug' ); ?>				   : <span><?php echo $dashdebug->get_debuglog_fsize(); ?></span></li>
+	<li class="list-group-item"><?php _e( '.htaccess modified ', 'dashdebug' ); ?>		: <span><?php echo $dashdebug->get_htaccess_mod_time(); ?></span></li>
 
 	<li class="list-group-item"><?php _e( 'Content Directory', 'dashdebug' ); ?>      : <span><?php echo WP_CONTENT_DIR; ?></span></li>
 	<li class="list-group-item"><?php _e( 'Content URL', 'dashdebug' ); ?>            : <span><?php echo WP_CONTENT_URL; ?></span></li>

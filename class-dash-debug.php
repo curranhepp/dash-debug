@@ -650,4 +650,25 @@ class DashDebug {
 		return trim( $ipaddr );
 	}
 
+	// Get file size of the debug.log file
+	function get_debuglog_fsize() {
+		$filename = WP_CONTENT_DIR . '/debug.log';
+
+		if ( file_exists($filename) && current_user_can('manage_options') ) {
+			$logSize = filesize($filename);
+			$text = round($logSize / 1024, 2) .' KB';
+		}
+		echo $text;
+	}
+
+	// Get last modifed date of .htaccess file in minutes
+	function get_htaccess_mod_time() {
+		$filename = ABSPATH . '.htaccess';
+
+		if ( file_exists($filename) ) {
+			$last_modified_install = date ("F d Y H:i", filemtime($filename));
+			return $last_modified_install;
+		}
+	}
+
 }
