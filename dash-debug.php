@@ -38,4 +38,4 @@ register_activation_hook( __FILE__, array( 'DashDebug', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'DashDebug', 'deactivate' ) );
 
 // TODO: replace Plugin_Name with the name of the plugin defined in `class-plugin-name.php`
-DashDebug::get_instance();
+add_action( 'plugins_loaded', array( 'DashDebug', 'get_instance' ) );
