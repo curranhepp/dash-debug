@@ -2,7 +2,8 @@
 
 // Get a reference to the SysInfo instance
 $dashdebug = DashDebug::get_instance();
-$icnhelp = '<img src="' . DASHDEBUG_PLUGIN_URL . '/img/icn-help.png" class="helpImg" />';
+$icnhelp = '<img src="' . DASHDEBUG_PLUGIN_URL . '/img/help.png" class="helpImg" />';
+$icnhelp2 = '<img src="' . DASHDEBUG_PLUGIN_URL . '/img/help.png" class="helpImg2" height="16" width="16" />';
 
 // Now get information from the environment
 global $wpdb, $apblue;
@@ -55,13 +56,14 @@ $theme = wp_get_theme();
 $browser = $dashdebug->get_browser();
 $plugins = $dashdebug->get_all_plugins();
 $active_plugins = $dashdebug->get_active_plugins();
+$inactive_plugins = $dashdebug->get_inactive_plugins();
 $all_options = $dashdebug->get_all_options();
 $all_options_serialized = serialize( $all_options );
 $all_options_bytes = round( mb_strlen( $all_options_serialized, '8bit' ) / 1024, 2 );
 $all_options_transients = $dashdebug->get_transients_in_options( $all_options );
 $debug_users = count_users();
 ?>
-
+<div class="wrap">
 <div class="dashdebug">
 
 		<div class="icon32">
@@ -128,6 +130,7 @@ $data = array(
 						<li>WP_POST_REVISIONS <a href="#" data-toggle="tooltip" title="The number of revisions saved for each post"><?php echo $icnhelp; ?></a><div class="pull-right"><?php echo defined( 'WP_POST_REVISIONS' ) ? WP_POST_REVISIONS ? WP_POST_REVISIONS : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) : _e( 'Not set', 'dashdebug' ) ?></div></li>
 						<li>CONCATENATE_SCRIPTS <a href="#" data-toggle="tooltip" title="To result in a faster administration area, all Javascript files are concatenated into one URL. If Javascript is failing to work in your administration area, you can try disabling this feature."><?php echo $icnhelp; ?></a><div class="pull-right"><?php echo defined( 'CONCATENATE_SCRIPTS' ) ? CONCATENATE_SCRIPTS ? CONCATENATE_SCRIPTS : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) : _e( 'Not set', 'dashdebug' ) ?></div></li>
 						<li>EMPTY_TRASH_DAYS <a href="#" data-toggle="tooltip" title="Controls the number of days before WordPress permanently deletes posts, pages, attachments, and comments, from the trash bin. The default is 30 days."><?php echo $icnhelp; ?></a><div class="pull-right"><?php echo defined( 'EMPTY_TRASH_DAYS' ) ? EMPTY_TRASH_DAYS ? EMPTY_TRASH_DAYS : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) : _e( 'Not set', 'dashdebug' ) ?></div></li>
+						<li>EMPTY_TRASH_DAYS <a href="#" data-toggle="tooltip" title="Controls the number of days before WordPress permanently deletes posts, pages, attachments, and comments, from the trash bin. The default is 30 days."><?php echo $icnhelp2; ?></a><div class="pull-right"><?php echo defined( 'EMPTY_TRASH_DAYS' ) ? EMPTY_TRASH_DAYS ? EMPTY_TRASH_DAYS : _e( '<span class="label label-default">Disabled</span>', 'dashdebug' ) : _e( 'Not set', 'dashdebug' ) ?></div></li>
 					</ul>
 				</div>
 			</div>
@@ -245,17 +248,20 @@ $data = array(
 </div><!-- /.panel-default -->
 <div class="panel panel-default">
 	<div class="panel-heading"><?php _e( 'Inactive Plugins', 'dashdebug' ); ?></div>
-	<div class="panel-body">Inactive Plugins: <?php echo count($active_plugins); ?></div>
+	<div class="panel-body">Inactive Plugins: <?php echo count($inactive_plugins); ?></div>
 	<ul class="list-group">
 		<?php
-		$return = '';
-		foreach( $plugins as $plugin_path => $plugin ) {
-                    if( in_array( $plugin_path, $active_plugins ) )
-                        continue;
+		// $return = '';
+		// $return = array();
+		// foreach( $plugins as $plugin_path => $plugin ) {
+  //                   if( in_array( $plugin_path, $active_plugins ) )
+  //                       continue;
 
-                    $return .= $plugin['Name'] . ': ' . $plugin['Version'] . "\n";
-                }
-                echo $return;
+  //                   // $return .= $plugin['Name'] . ': ' . $plugin['Version'] . "\n";
+  //                   $return[] = $plugin['Name'] . ': ' . $plugin['Version'];
+  //               }
+  //               var_dump( $return);
+  var_dump( $inactive_plugins);
 		// foreach ( $plugins as $plugin_path => $plugin ) {
 
 		// 	// Only show active plugins
@@ -301,31 +307,35 @@ $data = array(
 <div class="panel panel-default">
   <div class="panel-heading">All options</div>
   <div class="panel-body">
+  	<pre><code>
     <?php $all_options = wp_load_alloptions(); ?>
     <?php echo 'Total Options Set: ' . count($all_options); ?>
     <?php $my_options = array();
     	foreach( $all_options as $name => $value ) {
     		if(stristr( $name, '_transient' ))  $my_options[$name] = $value;
     	}
-    	print_r($my_options);
+	print_r($my_options);
     ?>
     <?php //print_r( wp_load_alloptions() ); ?>
+</code></pre>
   </div>
 </div>
 
 <div class="panel panel-default">
-  <div class="panel-heading">Panel heading without title</div>
+  <div class="panel-heading">Dev Test Panel</div>
   <div class="panel-body">
-    Session:                  <?php echo isset( $_SESSION ) ? 'Enabled' : 'Disabled'; ?><?php echo "\n"; ?>
-    Session Name:             <?php echo esc_html( ini_get( 'session.name' ) ); ?><?php echo "\n"; ?>
-    Cookie Path:              <?php echo esc_html( ini_get( 'session.cookie_path' ) ); ?><?php echo "\n"; ?>
-    Save Path:                <?php echo esc_html( ini_get( 'session.save_path' ) ); ?><?php echo "\n"; ?>
-    Use Cookies:              <?php echo ini_get( 'session.use_cookies' ) ? 'On' : 'Off'; ?><?php echo "\n"; ?>
-    Use Only Cookies:         <?php echo ini_get( 'session.use_only_cookies' ) ? 'On' : 'Off'; ?><?php echo "\n"; ?>
+  	<ul class="list-group">
+	    <li class="list-group-item"><?php _e( 'Session: '); ?>                  <?php echo isset( $_SESSION ) ? 'Enabled' : 'Disabled'; ?></li>
+	    <li class="list-group-item"><?php _e( 'Session Name: '); ?>            <?php echo esc_html( ini_get( 'session.name' ) ); ?></li>
+	    <li class="list-group-item"><?php _e( 'Cookie Path: '); ?>             <?php echo esc_html( ini_get( 'session.cookie_path' ) ); ?></li>
+	    <li class="list-group-item"><?php _e( 'Save Path: '); ?>               <?php echo esc_html( ini_get( 'session.save_path' ) ); ?></li>
+	    <li class="list-group-item"><?php _e( 'Use Cookies: '); ?>             <?php echo ini_get( 'session.use_cookies' ) ? 'On' : 'Off'; ?></li>
+	    <li class="list-group-item"><?php _e( 'Use Only Cookies: '); ?>        <?php echo ini_get( 'session.use_only_cookies' ) ? 'On' : 'Off'; ?></li>
+	    <li class="list-group-item"><?php _e( 'IP Address: '); ?>        	  <?php echo $dashdebug->get_ip(); ?></li>
+	</ul>
   </div>
 </div>
 
-
-
-
 </div><!-- /#dashdebug -->
+</div><!-- /#wrap -->
+

@@ -50,6 +50,8 @@ class DashDebug {
 	 */
 	protected $plugin_screen_hook_suffix = null;
 
+	var $active_plugins;
+
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
@@ -82,6 +84,8 @@ class DashDebug {
 		add_action( 'TODO', array( $this, 'action_method_name' ) );
 		add_filter( 'TODO', array( $this, 'filter_method_name' ) );
 
+		add_action( 'wp_scheduled_delete', array( $this, 'delete_expired_db_transients' ) );
+
 		// add_action( 'admin_notices', array( $this, 'activate_dashdebug_admin_notice' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'category_chart_data' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'comment_chart_data' ) );
@@ -89,6 +93,7 @@ class DashDebug {
 		// Add an action link pointing to the options page. TODO: Rename "plugin-name.php" to the name your plugin
 		// $plugin_basename = plugin_basename( plugin_dir_path( __FILE__ ) . 'plugin-name.php' );
 		// add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
+		$this->active_plugins = $this->get_active_plugins();
 
 
 	}
@@ -462,6 +467,39 @@ class DashDebug {
 
 	}
 
+	function create_chart($table, $data) {
+		$table['rows'] = $rows;
+		// convert data into JSON format
+		$jsonTable = json_encode( $table ); ?>
+
+        <script type="text/javascript">
+
+        // Load the Visualization API and the piechart package.
+        google.load('visualization', '1', {'packages':['corechart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+          // Create our data table out of JSON data loaded from server.
+          var data = new google.visualization.DataTable(<?php echo $jsonTable?>);
+          var options = {
+               title: 'Comments',
+              is3D: 'false',
+              width: 500,
+              height: 300
+            };
+          // Instantiate and draw our chart, passing in some options.
+          //do not forget to check ur div ID
+          var chart = new google.visualization.PieChart(document.getElementById('comment_chart_div'));
+          chart.draw(data, options);
+        }
+        </script>
+        <?php
+
+	}
+
 	/**
 	 * Determines which browser is currently being used to view this installation of WordPress.
 	 *
@@ -578,6 +616,24 @@ class DashDebug {
 	} // end get_active_plugins
 
 	/**
+	 * Retrieves all a list of inactive plugins.
+	 *
+	 * @return  array   The list of inactive plugins.
+	 */
+	function get_inactive_plugins() {
+		$plugins = get_plugins();
+		// $inactive_plugins = array();
+		foreach( $plugins as $plugin_path => $plugin ) {
+            if( in_array( $plugin_path, $this->active_plugins ) )
+                continue;
+
+            // $return .= $plugin['Name'] . ': ' . $plugin['Version'] . "\n";
+            $inactive_plugins[] = $plugin['Name'] . ': ' . $plugin['Version'];
+        }
+        return $inactive_plugins;
+	} // end get_active_plugins
+
+	/**
 	 * Retrieves the amount of memory being used by the installation along with the themes, plugins, etc.
 	 *
 	 * @return  float   The amount of memory being used by this installation.
@@ -622,6 +678,25 @@ class DashDebug {
 
 	} // end get_transients_in_options
 
+
+
+	function delete_expired_db_transients() {
+
+	    global $wpdb, $_wp_using_ext_object_cache;
+
+	    if( $_wp_using_ext_object_cache )
+	        return;
+
+	    $time = isset ( $_SERVER['REQUEST_TIME'] ) ? (int)$_SERVER['REQUEST_TIME'] : time() ;
+	    $expired = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE '_transient_timeout%' AND option_value < {$time};" );
+
+	    foreach( $expired as $transient ) {
+
+	        $key = str_replace('_transient_timeout_', '', $transient);
+	        delete_transient($key);
+	    }
+	}
+
 	/**
 	 * Get the current IP address.
 	 *
@@ -648,6 +723,18 @@ class DashDebug {
 			}
 		}
 		return trim( $ipaddr );
+	}
+
+	private function get_ip() {
+
+		 if ( !empty( $_SERVER['HTTP_CLIENT_IP'] ) )
+		   $ip   = $_SERVER['HTTP_CLIENT_IP'];
+		 elseif ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
+		   $ip   = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		 else
+		   $ip   = $_SERVER['REMOTE_ADDR'];
+
+		 return $ip;
 	}
 
 	// Get file size of the debug.log file
